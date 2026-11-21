@@ -5,16 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#000000">
 
-  <!-- Pas d'indexation : carte interne, accès via QR code uniquement -->
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="googlebot" content="noindex, nofollow">
+  <!-- Référencement : carte publique du Galion, indexable depuis le 21/11/2026 -->
+  <meta name="description" content="La carte du Galion à Sanary-sur-Mer : crêpes au sarrasin et au froment, moules, incontournables, glaces artisanales, petits-déjeuners et boissons. Brasserie, crêperie et glacier.">
+  <link rel="canonical" href="https://legalion-sanary.fr/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Le Galion">
+  <meta property="og:title" content="Le Galion · Carte · Sanary-sur-Mer">
+  <meta property="og:description" content="Crêpes, moules, incontournables, glaces artisanales et boissons : toute la carte du Galion, brasserie, crêperie et glacier à Sanary-sur-Mer.">
+  <meta property="og:url" content="https://legalion-sanary.fr/">
+  <meta property="og:image" content="https://legalion-sanary.fr/images/og-legalion.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Le Galion",
+    "description": "Brasserie, crêperie et glacier à Sanary-sur-Mer.",
+    "url": "https://legalion-sanary.fr/",
+    "image": "https://legalion-sanary.fr/images/og-legalion.jpg",
+    "servesCuisine": ["Crêperie", "Brasserie", "Glacier"],
+    "hasMenu": "https://legalion-sanary.fr/",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1 place de la Liberté",
+      "postalCode": "83110",
+      "addressLocality": "Sanary-sur-Mer",
+      "addressCountry": "FR"
+    },
+    "sameAs": ["https://www.facebook.com/pages/category/Cr%C3%AAperie/Le-Galion-Cr%C3%AAperie-Brasserie-Glacier-715208795196513"]
+  }
+  </script>
 
   <!-- Site autonome sur legalion-sanary.fr : les chemins relatifs partent de la racine.
        (Avant le 21/11/2026, la carte vivait sous paper34.fr/FLASHCODE/LEGALION, d où ce base href.)
        Sans <base>, les chemins relatifs résoudraient au mauvais endroit. -->
   <base href="/">
 
-  <title>Le Galion · Carte</title>
+  <title>Le Galion · Carte · Brasserie, crêperie et glacier à Sanary-sur-Mer</title>
 
   <!-- Préchargement des polices custom pour éviter le FOIT -->
   <link rel="preload" href="fonts/foco-webfont.woff" as="font" type="font/woff" crossorigin>
@@ -62,6 +92,8 @@
   <div id="tail"></div>
 
   <script src="menu.js" defer></script>
+  <!-- Vercel Web Analytics : mesure d’audience sans cookie -->
+  <script defer src="/_vercel/insights/script.js"></script>
 
   <!-- Google Translate (chargé en async, UI cachée, on pilote le <select> nous-même) -->
   <script type="text/javascript">

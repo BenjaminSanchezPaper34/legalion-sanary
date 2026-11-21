@@ -221,9 +221,14 @@
           <p class="footer__pdf">
             <a href="${esc(data.boissons_pdf)}" target="_blank" rel="noopener">Carte imprimable (PDF)</a>
           </p>` : ""}
+        <p class="footer__legal"><a href="/mentions-legales">Mentions légales</a></p>
         <p class="footer__credit">
-          Conçu par <a href="https://paper34.com" target="_blank" rel="noopener">Paper34</a>
+          <a class="footer-paper34" href="https://paper34.fr" target="_blank" rel="noopener">Réalisé par <img src="images/logo-paper34.svg" alt="Paper34" width="72" height="14"></a>
         </p>
       </footer>`;
+    // Signature Paper34 (kit statique) : chargée une fois le footer en place
+    const sig = document.createElement("script");
+    sig.src = "js/paper34-signature.js";
+    document.body.appendChild(sig);
   }
 })();

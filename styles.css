@@ -623,3 +623,12 @@ main {
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* ---------- MENTIONS + SIGNATURE PAPER34 (kit) ---------- */
+.footer { position: relative; padding-bottom: calc(24px + var(--safe-bottom)); }
+.footer__legal { margin-top: 16px; }
+.footer__legal a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+.footer__legal a:hover { color: var(--fg); }
+.footer-fumee { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
+.footer-paper34 { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 8px; color: var(--muted); text-decoration: none; min-height: 44px; }
+.footer-paper34 img { height: 14px; width: auto; display: block; }
