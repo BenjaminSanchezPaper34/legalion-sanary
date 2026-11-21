@@ -1,5 +1,5 @@
 /* =========================================================
-   Le Galion — moteur de rendu de la carte
+   Le Galion : moteur de rendu de la carte
    Charge menu.json et l'injecte dans #menu.
    Aucune dépendance, vanilla JS.
    ========================================================= */
