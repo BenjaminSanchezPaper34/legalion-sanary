@@ -95,7 +95,7 @@
   <!-- Vercel Web Analytics : mesure d’audience sans cookie -->
   <script defer src="/_vercel/insights/script.js"></script>
 
-  <!-- Google Translate (chargé en async, UI cachée, on pilote le <select> nous-même) -->
+  <!-- Google Translate (chargé à la demande, UI cachée, on pilote le <select> nous-même) -->
   <script type="text/javascript">
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
@@ -108,7 +108,8 @@
       }, 'google_translate_element');
     }
   </script>
-  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+  <!-- Le script Google n'est plus chargé à l'ouverture : uniquement au premier clic sur une langue
+       (ou si le visiteur avait déjà choisi une langue, cookie googtrans présent). -->
 
   <!-- Sélecteur de langue : déclenche le <select> Google caché -->
   <script>
@@ -123,6 +124,19 @@
         b.classList.toggle('is-active', on);
         b.setAttribute('aria-pressed', on ? 'true' : 'false');
       });
+
+      // Charge le script Google Traduction une seule fois, à la demande
+      let gtLoaded = false;
+      function loadGoogleTranslate() {
+        if (gtLoaded) return;
+        gtLoaded = true;
+        const sc = document.createElement('script');
+        sc.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        sc.async = true;
+        document.body.appendChild(sc);
+      }
+      // Langue déjà choisie lors d'une visite précédente : on recharge la traduction
+      if (initialLang !== 'fr') loadGoogleTranslate();
 
       function applyLang(lang) {
         // Cherche le <select> injecté par Google Translate (peut être en cours de chargement)
@@ -144,6 +158,9 @@
             b.classList.toggle('is-active', on);
             b.setAttribute('aria-pressed', on ? 'true' : 'false');
           });
+          // Retour au français sans avoir jamais traduit : rien à charger
+          if (lang === 'fr' && !gtLoaded) return;
+          loadGoogleTranslate();
           applyLang(lang);
         });
       });
