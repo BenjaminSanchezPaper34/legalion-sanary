@@ -1,6 +1,3 @@
 {
-  "cleanUrls": true,
-  "redirects": [
-    { "source": "/:path*", "has": [{ "type": "host", "value": "www.legalion-sanary.fr" }], "destination": "https://legalion-sanary.fr/:path*", "permanent": true }
-  ]
+  "cleanUrls": true
 }
