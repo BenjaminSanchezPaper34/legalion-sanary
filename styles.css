@@ -158,9 +158,21 @@ a { color: inherit; }
   pointer-events: none;
 }
 
-/* Bandeau Google "Cette page a été traduite par..." en haut */
+/* Bandeau Google "Cette page a été traduite par..." en haut.
+   Google a renommé ses classes (2024+ : VIpgJd-…) : on masque les deux générations,
+   plus la bulle "Texte d'origine" au toucher et le rond de chargement. */
 .skiptranslate iframe.goog-te-banner-frame,
-.goog-te-banner-frame { display: none !important; visibility: hidden !important; }
+.goog-te-banner-frame,
+iframe.skiptranslate,
+.VIpgJd-ZVi9od-ORHb-OEVmcd,
+.VIpgJd-ZVi9od-ORHb,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+.VIpgJd-ZVi9od-aZ2wEe-OiiCO,
+.VIpgJd-yAWNEb-L7lbkb,
+#goog-gt-tt,
+#goog-gt-vt,
+.goog-te-balloon-frame { display: none !important; visibility: hidden !important; }
+.VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q { background: none !important; box-shadow: none !important; }
 
 /* Empêche Google de pousser le body de 40px à cause du bandeau */
 body { top: 0 !important; position: static !important; }
