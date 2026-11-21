@@ -66,7 +66,7 @@
       <img class="hero__logo" src="images/logo-legalion.svg" alt="Le Galion · Brasserie · Crêperie · Glacier">
     </div>
 
-    <!-- Sélecteur de langue maison, pilote Google Translate en coulisse -->
+    <!-- Sélecteur de langue maison : traductions écrites par nous (translations.json), géré par menu.js -->
     <div class="hero__lang">
       <div class="lang-switcher" role="group" aria-label="Langue">
         <button type="button" class="lang-switcher__btn is-active" data-lang="fr" aria-pressed="true">FR</button>
@@ -76,8 +76,6 @@
         <button type="button" class="lang-switcher__btn" data-lang="it" aria-pressed="false">IT</button>
         <button type="button" class="lang-switcher__btn" data-lang="nl" aria-pressed="false">NL</button>
       </div>
-      <!-- Widget Google Translate caché, on intercepte son <select> via JS -->
-      <div id="google_translate_element" aria-hidden="true"></div>
     </div>
   </header>
 
@@ -95,78 +93,6 @@
   <script src="menu.js" defer></script>
   <!-- Vercel Web Analytics : mesure d’audience sans cookie -->
   <script defer src="/_vercel/insights/script.js"></script>
-
-  <!-- Google Translate (chargé à la demande, UI cachée, on pilote le <select> nous-même) -->
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'fr',
-        includedLanguages: 'en,es,de,it,nl,fr',
-        // VERTICAL produit un <select> que nos chips pilotent.
-        // SIMPLE/HORIZONTAL ne créent pas de <select> exploitable.
-        layout: google.translate.TranslateElement.InlineLayout.VERTICAL,
-        autoDisplay: false
-      }, 'google_translate_element');
-    }
-  </script>
-  <!-- Le script Google n'est plus chargé à l'ouverture : uniquement au premier clic sur une langue
-       (ou si le visiteur avait déjà choisi une langue, cookie googtrans présent). -->
-
-  <!-- Sélecteur de langue : déclenche le <select> Google caché -->
-  <script>
-    (function () {
-      const buttons = document.querySelectorAll('.lang-switcher__btn');
-
-      // Restaure la langue active depuis le cookie googtrans (ex: "/fr/en")
-      const cookieMatch = document.cookie.match(/googtrans=\/(?:auto|fr)\/([a-zA-Z-]+)/);
-      const initialLang = cookieMatch ? cookieMatch[1] : 'fr';
-      buttons.forEach((b) => {
-        const on = b.dataset.lang === initialLang;
-        b.classList.toggle('is-active', on);
-        b.setAttribute('aria-pressed', on ? 'true' : 'false');
-      });
-
-      // Charge le script Google Traduction une seule fois, à la demande
-      let gtLoaded = false;
-      function loadGoogleTranslate() {
-        if (gtLoaded) return;
-        gtLoaded = true;
-        const sc = document.createElement('script');
-        sc.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-        sc.async = true;
-        document.body.appendChild(sc);
-      }
-      // Langue déjà choisie lors d'une visite précédente : on recharge la traduction
-      if (initialLang !== 'fr') loadGoogleTranslate();
-
-      function applyLang(lang) {
-        // Cherche le <select> injecté par Google Translate (peut être en cours de chargement)
-        const select = document.querySelector('select.goog-te-combo');
-        if (!select) {
-          // Réessaye dès que possible
-          return setTimeout(() => applyLang(lang), 200);
-        }
-        // En français (langue d'origine), Google attend une valeur vide
-        select.value = lang === 'fr' ? '' : lang;
-        select.dispatchEvent(new Event('change'));
-      }
-
-      buttons.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const lang = btn.dataset.lang;
-          buttons.forEach((b) => {
-            const on = b === btn;
-            b.classList.toggle('is-active', on);
-            b.setAttribute('aria-pressed', on ? 'true' : 'false');
-          });
-          // Retour au français sans avoir jamais traduit : rien à charger
-          if (lang === 'fr' && !gtLoaded) return;
-          loadGoogleTranslate();
-          applyLang(lang);
-        });
-      });
-    })();
-  </script>
 
 </body>
 </html>

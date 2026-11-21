@@ -146,46 +146,6 @@ a { color: inherit; }
   outline-offset: 2px;
 }
 
-/* Le widget Google Translate doit RESTER dans le flux pour s'initialiser
-   (display: none l'empêche d'injecter son <select>). On le sort hors viewport. */
-#google_translate_element {
-  position: absolute;
-  left: -9999px;
-  top: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-/* Bandeau Google "Cette page a été traduite par..." en haut.
-   Google a renommé ses classes (2024+ : VIpgJd-…) : on masque les deux générations,
-   plus la bulle "Texte d'origine" au toucher et le rond de chargement. */
-.skiptranslate iframe.goog-te-banner-frame,
-.goog-te-banner-frame,
-iframe.skiptranslate,
-.VIpgJd-ZVi9od-ORHb-OEVmcd,
-.VIpgJd-ZVi9od-ORHb,
-.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
-.VIpgJd-ZVi9od-aZ2wEe-OiiCO,
-.VIpgJd-yAWNEb-L7lbkb,
-#goog-gt-tt,
-#goog-gt-vt,
-.goog-te-balloon-frame { display: none !important; visibility: hidden !important; }
-.VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q { background: none !important; box-shadow: none !important; }
-
-/* Empêche Google de pousser le body de 40px à cause du bandeau */
-body { top: 0 !important; position: static !important; }
-
-/* Surlignage jaune des mots traduits au survol */
-.goog-tooltip,
-.goog-tooltip:hover,
-.goog-text-highlight {
-  background-color: transparent !important;
-  box-shadow: none !important;
-  border: none !important;
-}
-
 /* ---------- LAYOUT ---------- */
 
 main {
@@ -422,6 +382,12 @@ main {
   color: rgba(255, 255, 255, 0.4);
   margin-right: 2px;
 }
+/* « ou » traduit selon la langue choisie (html lang mis à jour par menu.js) */
+html[lang="en"] .formula__choices li:not(:first-child)::before { content: "or "; }
+html[lang="es"] .formula__choices li:not(:first-child)::before,
+html[lang="it"] .formula__choices li:not(:first-child)::before { content: "o "; }
+html[lang="de"] .formula__choices li:not(:first-child)::before { content: "oder "; }
+html[lang="nl"] .formula__choices li:not(:first-child)::before { content: "of "; }
 
 /* ---------- SUB-SECTIONS (coupes 1/2/3 boules) ---------- */
 
