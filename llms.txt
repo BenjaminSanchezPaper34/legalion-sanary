@@ -3,6 +3,7 @@
 > Brasserie, crêperie et glacier à Sanary-sur-Mer (Var). Ce site présente la carte du restaurant.
 
 - Adresse : 1 place de la Liberté, 83110 Sanary-sur-Mer
+- Téléphone : 04 94 34 72 31
 - Carte complète : https://legalion-sanary.fr/ (contenu détaillé : https://legalion-sanary.fr/menu.json)
 - Au menu : crêpes au sarrasin et au froment, moules, plats incontournables, glaces artisanales (Il Monello, Sanary), petits-déjeuners, menu enfant, boissons, cidres et vins.
 - Facebook : https://www.facebook.com/pages/category/Cr%C3%AAperie/Le-Galion-Cr%C3%AAperie-Brasserie-Glacier-715208795196513
